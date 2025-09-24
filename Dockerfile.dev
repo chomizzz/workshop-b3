@@ -1,8 +1,9 @@
 FROM ruby:3.3.5-slim
 
-# Install dependencies
+# Install dependencies including Node.js LTS
 RUN apt-get update -qq && \
-    apt-get install -y build-essential curl git libyaml-dev pkg-config sqlite3 libsqlite3-dev nodejs npm && \
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+    apt-get install -y build-essential curl git libyaml-dev pkg-config sqlite3 libsqlite3-dev nodejs && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -14,6 +15,10 @@ COPY Gemfile Gemfile.lock ./
 # Install gems
 RUN bundle install
 
+# Copy package files if you have them
+COPY package*.json ./
+RUN npm install 2>/dev/null || echo "No package.json found"
+
 # Copy app code
 COPY . .
 
@@ -24,4 +29,4 @@ RUN mkdir -p storage tmp/pids
 EXPOSE 3000
 
 # Start server
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bin/dev"]

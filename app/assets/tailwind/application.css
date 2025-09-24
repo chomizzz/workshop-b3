@@ -9,9 +9,10 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
-/*@tailwind base;*/
-/*@tailwind components;*/
+/* @tailwind base; */
+/* @tailwind components; */
 @import "tailwindcss";
+@tailwind utilities;
 
 #fade-out {
   position: fixed;

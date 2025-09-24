@@ -1,5 +1,4 @@
 version: "3.8"
-
 services:
   web:
     build:
@@ -20,8 +19,9 @@ services:
       bash -c "
         bundle install &&
         rails db:create db:migrate &&
+        rails assets:precompile &&
+        rails tailwindcss:build &&
         rails server -b 0.0.0.0
       "
-
 volumes:
   bundle_cache:
