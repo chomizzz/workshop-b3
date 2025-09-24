@@ -19,6 +19,10 @@
   animation: fadeOut 2s forwards;
 }
 
+.primary-button {
+  @apply bg-amber-400;
+}
+
 @keyframes fadeOut {
   0% {
     opacity: 1;

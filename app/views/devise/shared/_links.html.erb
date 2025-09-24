@@ -7,7 +7,7 @@
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name), class: "flex w-s bg-blue-400 text-white mb-2 py-1 px-2 rounded hover:bg-blue-900"%><br />
+  <%= link_to "Forgot your password?", new_password_path(resource_name), class: "primary-button"%><br />
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
