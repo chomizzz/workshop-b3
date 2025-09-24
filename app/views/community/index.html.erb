@@ -1,0 +1,12 @@
+<div class="flex flex-col gap-4">
+  <h1 class="font-extrabold text-2xl mb-8">Toutes nos communautés</h1>
+
+  <% @communities.each do |community| %>
+    <div>
+      <%= community.name %> 
+    </div>
+  <% end %> 
+  <div>
+    <%= @distance %> 
+  </div>
+</div>

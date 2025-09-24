@@ -1,0 +1,35 @@
+<div class="flex w-full justify-between">
+
+    <div class="flex-col p-2 p-2 min-w-1/5 ">
+      <div class="flex gap-1">
+        <h2 class="flex p-2 font-bold">CONTACT</h2>
+        <div class="flex align-middle p-2">
+          <%= link_to "+ 👥", users_find_contacts_path, class:"bg-cyan-500 rounded border p-1 whitespace-nowrap"  %>
+        </div>
+      </div>
+
+        <% @contacts.each do |contact| %>
+        <ul>
+          <li>
+            <%= button_to "#{contact.nickname}", conversation_load_messages_path,
+              params: { id: conversation_id_with_contact(contact), nickname: @user.nickname },
+              method: :post,
+              data: { turbo_frame: "conversation" },
+              class: "w-3/4 border rounded p-2 bg-blue-500"%>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+
+    <div id="conversation-section" class="bg-gray-50 flex-col p-2 w-3/5">
+      <% if @conversation %>
+        <%= render partial: "conversation_section", locals: { 
+          messages: @messages, 
+          new_message: @new_message, 
+          conversation: @conversation, 
+          other_user: @other_user,
+          user: @user 
+        } %>
+      <% end %>
+    </div>
+</div>
