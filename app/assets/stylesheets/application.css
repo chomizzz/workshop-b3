@@ -1,0 +1,44 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+/*@tailwind base;*/
+/*@tailwind components;*/
+@import "tailwindcss";
+
+#fade-out {
+  position: fixed;
+  animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.highlight {
+  background: purple !important;
+}
+
+.resizable {
+  resize: horizontal !important;
+  display: block !important;
+  overflow: hidden !important;
+  position: absolute; /* Ou 'relative' selon le besoin */
+  z-index: 50; /* Place l'élément au-dessus des autres */
+  pointer-events: auto; /* Permet à l'élément d'être interactif */
+}

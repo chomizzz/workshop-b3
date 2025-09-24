@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      - RAILS_ENV=development
+      - ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY=hFZclUx02sM1zUfPr9HUvL3XibxqoKDn
+      - ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY=62psNC8HxNDqeh8aUVDtpuDR7aFHYB4o
+      - ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT=3GqNW8leTqOJmKb2b6ZW0hgkmWI7f8pg
+    stdin_open: true
+    tty: true
+    command: >
+      bash -c "
+        bundle install &&
+        rails db:create db:migrate &&
+        rails server -b 0.0.0.0
+      "
+
+volumes:
+  bundle_cache:

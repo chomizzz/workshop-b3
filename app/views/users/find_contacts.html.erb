@@ -1,0 +1,15 @@
+<h1 class="block text-2xl font-bold mb-4">User profile</h1>
+<h2 class="block text-xl font-semibold mb-2">Contact List</h2>
+
+<%= turbo_frame_tag "contacts_list" do %>
+  <%= render partial: "contacts_list", locals: { contacts: @contacts } %>
+<% end %>
+
+<h2 class="block text-xl font-semibold mb-2">Add contact</h2>
+<%= form_with url: add_contact_and_create_conversation_users_path, method: :post, local: false, data: { turbo_frame: "contacts_list" } do |form| %>
+  <div>
+    <%= form.label :nickname %>
+    <%= form.text_field :nickname, class: "border" %>
+    <%= form.submit "Ajouter" %>
+  </div>
+<% end %>

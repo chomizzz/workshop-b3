@@ -1,0 +1,14 @@
+<% flash.each do |key, value| %>
+  <div class="relative h-8 top-15 right-1/2 mt-2 z-40 gap-2 rounded 
+              <%= key == 'notice' ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800' %>
+              px-4 py-2"
+       role="alert" id="fade-out">
+    <span class="block sm:inline"><%= value %></span>
+    <span class="absolute top-0 bottom-0 right-0 px-2 py-2">
+      <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <title>Close</title>
+      </svg>
+    </span>
+  </div>
+<% end %>
+
