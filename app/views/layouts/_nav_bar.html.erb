@@ -18,7 +18,7 @@
         <% else %>
           <h1>Hey Invité</h1>
         <% end %>
-        <%= "🏠#{current_user.community.name}" if current_user %>
+        <%= "🏠#{current_user.community.name}" if current_user && current_user.community %>
       </div>
     </div>
   </div>
