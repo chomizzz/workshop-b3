@@ -5,9 +5,10 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - "3000:3000"
+      - "3001:3001"
     volumes:
       - bundle_cache:/usr/local/bundle
+      - ./config/ssl:/app/config/ssl
     environment:
       - RAILS_ENV=development
       - ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY=hFZclUx02sM1zUfPr9HUvL3XibxqoKDn
@@ -19,9 +20,10 @@ services:
       bash -c "
         bundle install &&
         rails db:create db:migrate &&
+        rails db:seed &&
         rails assets:precompile &&
         rails tailwindcss:build &&
-        rails server -b 0.0.0.0
+        rails server
       "
 volumes:
   bundle_cache:

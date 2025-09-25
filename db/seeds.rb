@@ -65,10 +65,16 @@ else
 end
 
 
+  epsi_location = Location.find_or_create_by!(latitude: "48.132124", longitude: "-1.710573")
 
+  eni_location = Location.find_or_create_by!(latitude: "48.03893", longitude: "-1.692324")
+
+  community_1.update(location: epsi_location)
+  community_2.update(location: eni_location)
 
 puts "=== Seed completed ==="
 puts "Total users: #{User.count}"
-puts "Total communities: #{Conversation.count}"
+puts "Total communities: #{Community.count}"
 puts "Total conversations: #{Conversation.count}"
 puts "Total messages: #{Message.count}"
+puts "Total locations: #{Location.count}"
