@@ -1,14 +1,29 @@
 <div class="flex flex-col gap-4">
   <h1 class="font-extrabold text-2xl mb-8">Toutes nos communautés</h1>
 
-  <% if @communities %>
-    <% @communities.each do |community| %>
-      <div>
-        <%= community.name %> 
-      </div>
-    <% end %> 
-    <div>
-      <%= @distance %> 
+    <% if @locations %> 
+      <div class="flex flex-col gap-2">
+        <% @locations.each do |location| %>
+          <div class="text-xl text-bold">
+            <%= link_to "#{location[:community]}", community_show_path(location[:community_id])%> : <%= location[:distance] %> km
+          </div>
+        <% end %>
     </div>
   <% end %> 
+  <hr>
+  <div>
+    <h2 class="font-extrabold text-2xl mb-8">Nos stocks</h2>
+    <ul class="gap-2">
+      <% @items.each do |item| %> 
+        <li class="flex text-xl gap-1 items-center">
+          <span><%= item.name %> :</span>
+          <p class="text-red-800"><%= item.quantity %></p>
+          <span><%= item.unit %></span>
+        </li>
+      <%end%>
+    </ul>
+
+  </div>
+
+
 </div>

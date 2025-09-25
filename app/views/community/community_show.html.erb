@@ -1,0 +1,26 @@
+<div class="flex flex-col">
+  <ul class="gap-2">
+    <% @items.each do |item| %> 
+      <li class="flex text-xl gap-1 items-center">
+        <span><%= item.name %> :</span>
+        <p class="text-red-800"><%= item.quantity %></p>
+        <span><%= item.unit %></span>
+      </li>
+
+      <div class="flex gap-x-2 items-center mb-2">
+        <%= form_with url: community_take_items_path,
+                      method: :post,
+                      local: false,
+                      data: {turbo_frames: "items"},
+                      class: "flex gap-x-2 items-center" do |form| %>
+          <%= form.hidden_field :item_id, value: item.id %>
+          <%= form.hidden_field :community_id, value: @community.id %>
+          <%= form.number_field :quantity, name:"quantity", class:"w-24 border rounded px-1", max:"#{item.quantity}" %>
+          <%= form.submit "Take", class: "bg-purple-600 w-2xs text-white py-1 px-2 rounded" %>
+        <% end %>
+      </div>
+
+    <% end %> 
+  </ul>
+</div>
+

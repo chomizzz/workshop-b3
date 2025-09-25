@@ -22,8 +22,79 @@ puts "Users created successfully"
 
 community_1 = Community.find_or_create_by!(name: "EPSIEN")
 community_2 = Community.find_or_create_by!(name: "ENIEN")
+community_3 = Community.find_or_create_by!(name: "AFTECIEN")
+community_4 = Community.find_or_create_by!(name: "SUBDEVINCIEN")
+community_5 = Community.find_or_create_by!(name: "EPITECHIEN")
+
+epsi_location = Location.find_or_create_by!(latitude: "48.132124", longitude: "-1.710573")
+eni_location = Location.find_or_create_by!(latitude: "48.03893", longitude: "-1.692324")
+aftec_location = Location.find_or_create_by!(latitude: "48.0907008", longitude: "-1.6969032")
+subdevinci_location = Location.find_or_create_by!(latitude: "48.0977725", longitude: "-1.624893")
+epitechien_location = Location.find_or_create_by!(latitude: "48.0907008", longitude: "-1.6319941")
+
+
+community_1.update(location: epsi_location)
+community_2.update(location: eni_location)
+community_3.update(location: aftec_location)
+community_4.update(location: subdevinci_location)
+community_5.update(location: epitechien_location)
 
 puts "Communities created successfully"
+
+puts "Add items to communities"
+
+# Items uniques pour chaque communauté
+items_per_community = {
+  community_1 => [
+    { name: "Water Bottle", quantity: 10, unit: "L" },
+    { name: "Chair", quantity: 50, unit: "pcs" },
+    { name: "Laptop", quantity: 15, unit: "pcs" },
+    { name: "Notebook", quantity: 200, unit: "pcs" },
+    { name: "Pen", quantity: 500, unit: "pcs" }
+  ],
+  community_2 => [
+    { name: "Projector", quantity: 5, unit: "pcs" },
+    { name: "Table", quantity: 20, unit: "pcs" },
+    { name: "Marker", quantity: 100, unit: "pcs" },
+    { name: "Whiteboard", quantity: 10, unit: "pcs" },
+    { name: "Cable", quantity: 50, unit: "m" }
+  ],
+  community_3 => [
+    { name: "Chair Cushion", quantity: 30, unit: "pcs" },
+    { name: "USB Drive", quantity: 60, unit: "pcs" },
+    { name: "Printer Paper", quantity: 500, unit: "sheets" },
+    { name: "Stapler", quantity: 10, unit: "pcs" },
+    { name: "Ink Cartridge", quantity: 20, unit: "pcs" }
+  ],
+  community_4 => [
+    { name: "Router", quantity: 8, unit: "pcs" },
+    { name: "Switch", quantity: 5, unit: "pcs" },
+    { name: "Ethernet Cable", quantity: 100, unit: "m" },
+    { name: "Monitor", quantity: 12, unit: "pcs" },
+    { name: "Keyboard", quantity: 15, unit: "pcs" }
+  ],
+  community_5 => [
+    { name: "Mouse", quantity: 20, unit: "pcs" },
+    { name: "Headset", quantity: 10, unit: "pcs" },
+    { name: "Notebook", quantity: 150, unit: "pcs" },
+    { name: "Pen", quantity: 300, unit: "pcs" },
+    { name: "Desk Lamp", quantity: 8, unit: "pcs" }
+  ]
+}
+
+# Création des items pour chaque communauté
+items_per_community.each do |community, items|
+  items.each do |item_data|
+    Item.create!(
+      name: item_data[:name],
+      quantity: item_data[:quantity],
+      unit: item_data[:unit],
+      community: community
+    )
+  end
+end
+
+puts "Items added successfully!"
 
 puts "Adding user to communities"
 users = User.all.to_a
@@ -65,12 +136,6 @@ else
 end
 
 
-  epsi_location = Location.find_or_create_by!(latitude: "48.132124", longitude: "-1.710573")
-
-  eni_location = Location.find_or_create_by!(latitude: "48.03893", longitude: "-1.692324")
-
-  community_1.update(location: epsi_location)
-  community_2.update(location: eni_location)
 
 puts "=== Seed completed ==="
 puts "Total users: #{User.count}"
