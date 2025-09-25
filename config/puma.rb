@@ -37,6 +37,13 @@ if ENV["RAILS_ENV"] == "development"
   }
 end
 
+before_fork do
+  if ENV["RAILS_ENV"] == "development"
+    puts "Building TailwindCSS..."
+    result = system("bin/rails tailwindcss:build")
+    puts result ? "✓ TailwindCSS built successfully" : "✗ TailwindCSS build failed"
+  end
+end
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
 

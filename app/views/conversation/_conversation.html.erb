@@ -3,7 +3,7 @@
 <% conversation ||= @conversation %>
 
 
-<div class="flex flex-col-reverse gap-2 max-h-96 overflow-y-auto">
+<div class="flex flex-col-reverse gap-2 max-h-96 min-h-96 overflow-y-auto">
   <% if messages.any? %>
     <% messages.each do |message| %>
       <% if message.user_id == current_user.id %>
