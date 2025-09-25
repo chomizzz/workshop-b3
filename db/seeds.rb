@@ -7,15 +7,15 @@ user_admin = User.find_or_create_by(email: "j.rougerie@proton.me") do |user|
 end
 
 user_1 = User.find_or_create_by!(email: "user1@mail.com", nickname: "user1") do |user|
-  user.password = "123456abcdef"
+  user.password = "password"
 end
 
 user_2 = User.find_or_create_by!(email: "user2@mail.com", nickname: "user2") do |user|
-  user.password = "123456abcdef"
+  user.password = "password"
 end
 
 user_3 = User.find_or_create_by!(email: "user3@mail.com", nickname: "user3") do |user|
-  user.password = "123456abcdef"
+  user.password = "password"
 end
 
 puts "Users created successfully"
